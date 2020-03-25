@@ -1,0 +1,1 @@
+# GIN_sem4_bazydanych
