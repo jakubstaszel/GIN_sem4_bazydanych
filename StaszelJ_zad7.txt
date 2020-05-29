@@ -1,0 +1,23 @@
+--- zad1 --- tworzenie kopii zapasowej
+cd C:\Program Files\PostgreSQL\12\bin
+pg_dump -U postgres -Fc firma > firma.sql
+
+--- zad2 --- usuwanie bazy danych
+DROP DATABASE firma;
+
+--- zad3 --- przywracanie kopii zapasowej
+CREATE DATABASE firma;
+pg_restore -U postgres -d firma "C:\Program Files\PostgreSQL\12\bin\firma.sql"
+
+--- zad4 i zad5 --- wykonane bez kodu
+
+--- zad6 --- tworzenie kopii zapasowej całej bazy
+BACKUP DATABASE AdventureWorks2017
+ TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL1  5.SERVKUB\MSSQL\Backup\AdvWork17.bak'
+ WITH FORMAT;
+
+--- zad7 --- widok
+CREATE VIEW log_dep AS SELECT hd.Name, he.LoginID 
+FROM AdventureWorks2017.HumanResources.Department hd, 
+AdventureWorks2017.HumanResources.EmployeeDepartmentHistory hedh, AdventureWorks2017.HumanResources.Employee he 
+WHERE hd.DepartmentID=hedh.DepartmentID AND he.BusinessEntityID = hedh.BusinessEntityID;
